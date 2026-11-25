@@ -42,3 +42,10 @@
 - Release = tag `vX.Y.Z` matching the CMake version; workflow zips the plugin and standalone as the release zip.
 - **Release zip name = `NAME.version-Win64.zip`**, e.g. `DRM-TRGRR.1.1.0-Win64.zip` (note the dot between name and version, unlike the plugin name which has none). Keep the same pattern for every project; the version must match the CMake version and tag. The workflow artifact name matches the zip name.
 - **UI shows the version**: a tiny `vX.Y.Z` tag under the product title (header), taken from `JucePlugin_VersionString` so it always matches the CMake version. Do the same in every project.
+
+## Accounts and workflow (reuse for next projects)
+
+- **`elvicw89` owns the public repos** (`DRMTRGRR`, `DRM-SMRTVRB`, `DRM-RESHAPE`, and the `DRM-Plugins` download hub). Builds and releases happen there. Keep them public: the plugins use JUCE under its open-source licence.
+- **`elvicw` is the developer account.** Fork the repo from `elvicw89`, work on a task branch in the fork, open a PR into `elvicw89`, and merge it there. Local remotes: `origin` = the `elvicw` fork, `upstream` = `elvicw89`.
+- **Releases:** tag `vX.Y.Z` on `elvicw89`'s `main`; the Windows workflow builds and publishes `NAME.version-Win64.zip`.
+- **Hub (`elvicw89/DRM-Plugins`)** auto-discovers repos with the `drm-series` topic under `elvicw89` and copies each latest release zip and screenshot into the hub daily (and on manual run). Tag every new DRM plugin repo with `drm-series`.
